@@ -1,18 +1,20 @@
 import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
-  const width = 200; 
-  const height = 200;
-  const src = "/profile_photo.jpeg";
+  const width = 320; 
+  const height = 320;
+  const src = "/globe.svg";
   return (
     <div>
+      <Navbar />
       <div style={{ width: width, height: height, borderRadius: '50%', overflow: 'hidden' }}>
       <Image
         src={src}
-        alt={"Photo of Myself :p"}
+        alt={"Profile Photo"}
         width={width}
         height={height}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }} // Make the image fill the circle
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
     </div>
     </div>
