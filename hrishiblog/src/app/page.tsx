@@ -1,15 +1,70 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { MdEmail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
-
+enum Stage {
+  TYPEWRITER = "TYPEWRITER",
+  RENDER = "RENDER",
+}
 
 export default function Home() {
+
+  const [stage, setStage] = useState<Stage>(Stage.TYPEWRITER); 
+
+  useEffect(() => {
+    if (stage === Stage.TYPEWRITER) {
+      console.log("Typewriter stage active, transitioning to render stage in 3 seconds...");
+      setTimeout(() => setStage(Stage.RENDER), 3000);
+    }
+  }, [stage]);
+
   return (
     <div>
+      <motion.h1
+        initial={{ top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }}
+        animate={
+          stage === Stage.RENDER
+            ? { top: "6.5rem", left: "4rem", x: 500, y: "0%", scale: 1 }
+            : { top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1}
+        }
+        transition={{ duration: 1 }}
+        className="fixed text-4xl font-bold text-white z-50"
+      >
+        {stage === Stage.TYPEWRITER ? (
+          <Typewriter
+            words={["hi im hrishi "]}
+            loop={1}
+            cursor
+            cursorStyle="|"
+            typeSpeed={200}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        ) : (
+          <span>hi im hrishi <span className="ml-1 waving-hand">👋</span></span>
+        )}
+      </motion.h1>
+
+      
+
+      
+
+      {stage == Stage.RENDER && (
+      <div>
       <Navbar />
       <main>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2.0 }}
+            className="w-full border-b border-dashed border-gray-700"
+          >
           <div className="w-full border-b border-dashed border-gray-700">
           <div className="mx-auto py-12 max-w-7xl border-l border-r border-dashed border-gray-700">
             <div className="lg:grid lg:grid-cols-12 items-stretch">
@@ -26,7 +81,8 @@ export default function Home() {
               </div>
               {/* Personal Introduction */}
               <div className="px-5 lg:col-span-7 mt-10 lg:mt-0 text-center lg:text-left ">
-                <h1 className="text-3xl font-bold text-white my-2">hi im hrishi <span className="ml-1 waving-hand">👋</span></h1>
+                {/* Leave this space for the animated h1 to "land" visually */}
+                <div className="h-12" />
                 <p className="text-md text-gray-300 text-justify">
                   I&apos;m a Third Year Computer Science undergraduate at the National University of Singapore. I mostly build full-stack applications, passionate about projects that make the world a better place. 
                   Recently, I&apos;ve developed a strong interest in Computer Vision, and I&apos;m excited about the things I could build with it. If I&apos;m not coding, you would probably find me playing TFT :D
@@ -59,8 +115,10 @@ export default function Home() {
             </div>
             
           </div>
-   
+        </motion.div>
       </main>
+      </div>
+      )}
     </div>
 
   );
