@@ -7,6 +7,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
+import ProjectCard from "@/components/ProjectCard";
 
 enum Stage {
   TYPEWRITER = "TYPEWRITER",
@@ -26,16 +27,19 @@ export default function Home() {
 
   return (
     <div>
-      <motion.h1
-        initial={{ top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }}
-        animate={
-          stage === Stage.RENDER
-            ? { top: "6.5rem", left: "4rem", x: 500, y: "0%", scale: 1 }
-            : { top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1}
-        }
-        transition={{ duration: 1 }}
-        className="fixed text-4xl font-bold text-white z-50"
-      >
+<motion.h1
+          initial={{ top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }}
+          animate={
+            stage === Stage.RENDER
+              ? { top: "6.5rem", left: "4rem", x: 500, y: "0%", scale: 1 }
+              : { top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }
+          }
+          transition={{ duration: 1 }}
+          className={`text-4xl font-bold text-white z-50 ${
+            stage === Stage.RENDER ? "absolute" : "fixed"
+          }`}
+        >
+
         {stage === Stage.TYPEWRITER ? (
           <Typewriter
             words={["hi im hrishi "]}
@@ -109,12 +113,40 @@ export default function Home() {
             </div>
           </div>
           </div>
-          <div className="w-full border-b border-dashed border-gray-700 flex justify-center">
-            <div className="mx-auto pb-12 max-w-7xl">
-                <h1 className="text-3xl font-bold text-white my-4">projects</h1>
+          <div className="mx-auto max-w-7xl border-l border-r border-dashed border-gray-700">
+            <div className="pb-2 justify-center text-center">
+              <h1 className="text-3xl font-bold text-white mt-4">featured projects</h1>
+              <p className="text-sm text-grey-200">some things i have been working on</p>
             </div>
-            
+            <div className="flex flex-row gap-4 pb-4 px-2">
+                <div className="w-full md:w-1/2 lg:w-1/3">
+                  <ProjectCard
+                    title="Scratch Neural Network"
+                    description="Built a Neural Network from scratch, with no external libraries, achieving 92% accuracy on the MNIST dataset"
+                    tags={["Python", "Numpy"]}
+                    link="https://github.com/hrishikeshsathyian/ScratchNN"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 lg:w-1/3">
+                  <ProjectCard
+                    title="TutorLink"
+                    description="Built a website to connect students with tutors, allowing private tuition matching with 0 commission fees"
+                    tags={["Python", "Django"]}
+                    link="https://github.com/hrishikeshsathyian/ScratchNN"
+                  />
+                </div>
+            </div>
           </div>
+          <div className="mx-auto max-w-7xl border-l border-r border-dashed border-gray-700">
+            <div className="pb-2 justify-center text-center">
+              <h1 className="text-3xl font-bold text-white mt-4">blogs</h1>
+              <p className="text-sm text-grey-200">trying to write my thoughts down on topics i care about!</p>
+            </div>
+            <div className="flex flex-row gap-4 pb-4 px-2">
+                {/* TODO: Add blog cards here */}
+            </div>
+          </div>
+
         </motion.div>
       </main>
       </div>
