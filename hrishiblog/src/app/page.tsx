@@ -20,7 +20,6 @@ export default function Home() {
 
   useEffect(() => {
     if (stage === Stage.TYPEWRITER) {
-      console.log("Typewriter stage active, transitioning to render stage in 3 seconds...");
       setTimeout(() => setStage(Stage.RENDER), 3000);
     }
   }, [stage]);
@@ -132,7 +131,7 @@ export default function Home() {
                     title="TutorLink"
                     description="Built a website to connect students with tutors, allowing private tuition matching with 0 commission fees"
                     tags={["Python", "Django"]}
-                    link="https://github.com/hrishikeshsathyian/ScratchNN"
+                    link="https://tutorlinksg.com"
                   />
                 </div>
             </div>
