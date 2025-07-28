@@ -134,6 +134,14 @@ export default function Home() {
                     link="https://tutorlinksg.com"
                   />
                 </div>
+                <div className="w-full md:w-1/2 lg:w-1/3">
+                  <ProjectCard
+                    title="RouteJooz"
+                    description="Designed and implemented a Multi Vehicle Route Optimisation platform for a local logistics company, minimising costs and improving delivery efficiency"
+                    tags={["Python", "Google Maps API", "Numpy", "NextJS", "TailwindCSS"]}
+                    link="https://route-jooz-frontend.vercel.app/"
+                  />
+                </div>
             </div>
           </div>
           <div className="mx-auto max-w-7xl border-l border-r border-dashed border-gray-700">
