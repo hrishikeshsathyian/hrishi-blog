@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
+import { useRef, useLayoutEffect } from "react";
+
 
 enum Stage {
   TYPEWRITER = "TYPEWRITER",
@@ -17,6 +19,20 @@ enum Stage {
 export default function Home() {
 
   const [stage, setStage] = useState<Stage>(Stage.TYPEWRITER); 
+  const introRef = useRef<HTMLDivElement>(null);
+  const [targetTop, setTargetTop] = useState<number>(100); // fallback default
+  const [targetLeft, setTargetLeft] = useState<number>(0); // fallback default
+  useLayoutEffect(() => {
+    if (introRef.current) {
+      const rect = introRef.current.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
+
+      setTargetTop(rect.top + scrollY - 50);   // Fine-tune as needed
+      setTargetLeft(rect.left + scrollX + 120);      // No extra offset
+    }
+  }, [stage]);
+
 
   useEffect(() => {
     if (stage === Stage.TYPEWRITER) {
@@ -26,22 +42,39 @@ export default function Home() {
 
   return (
     <div>
-<motion.h1
-          initial={{ top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }}
-          animate={
-            stage === Stage.RENDER
-              ? { top: "6.5rem", left: "4rem", x: 500, y: "0%", scale: 1 }
-              : { top: "50%", left: "50%", x: "-50%", y: "-50%", scale: 1 }
-          }
-          transition={{ duration: 1 }}
-          className={`text-4xl font-bold text-white z-50 ${
-            stage === Stage.RENDER ? "absolute" : "fixed"
-          }`}
-        >
-
+    <motion.h1
+        initial={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          x: "-50%",
+          y: "-50%",
+          scale: 1,
+        }}
+        animate={
+          stage === Stage.RENDER
+            ? {
+                position: "absolute",
+                top: targetTop,
+                left: targetLeft,
+                y: 0,
+                scale: 1,
+              }
+            : {
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                x: "-50%",
+                y: "-50%",
+                scale: 1,
+              }
+        }
+        transition={{ duration: 1 }}
+        className={`text-4xl font-bold text-white z-50`}
+      >
         {stage === Stage.TYPEWRITER ? (
           <Typewriter
-            words={["hi im hrishi "]}
+            words={["hi im hrishi"]}
             loop={1}
             cursor
             cursorStyle="|"
@@ -50,9 +83,12 @@ export default function Home() {
             delaySpeed={1000}
           />
         ) : (
-          <span>hi im hrishi <span className="ml-1 waving-hand">👋</span></span>
+          <span>
+            hi im hrishi <span className="ml-1 waving-hand">👋</span>
+          </span>
         )}
       </motion.h1>
+
 
       
 
@@ -82,9 +118,11 @@ export default function Home() {
                   className="rounded-full border-5 border-blue-300 object-cover"
                 />
               </div>
+              
               {/* Personal Introduction */}
               <div className="px-5 lg:col-span-7 mt-10 lg:mt-0 text-center lg:text-left ">
                 {/* Leave this space for the animated h1 to "land" visually */}
+                <div ref={introRef}>
                 <div className="h-12" />
                 <p className="text-md text-gray-300 text-justify">
                   I&apos;m a Third Year Computer Science undergraduate at the National University of Singapore. I mostly build full-stack applications, passionate about projects that make the world a better place. 
@@ -106,6 +144,7 @@ export default function Home() {
                     <FaGithub className="inline-block text-blue-300 hover:text-blue-500" size={30}/>
                   </a>
 
+                </div>
                 </div>
               
               </div>
@@ -138,7 +177,7 @@ export default function Home() {
                   <ProjectCard
                     title="RouteJooz"
                     description="Designed and implemented a Multi Vehicle Route Optimisation platform for a local logistics company, minimising costs and improving delivery efficiency"
-                    tags={["Python", "Google Maps API", "Numpy", "NextJS", "TailwindCSS"]}
+                    tags={["Python", "Google Maps API", "Numpy", "NextJS"]}
                     link="https://route-jooz-frontend.vercel.app/"
                   />
                 </div>
