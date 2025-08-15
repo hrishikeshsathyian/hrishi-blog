@@ -1,23 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-:root {
+  --background: #000000;   /* Permanent black */
+  --foreground: #ededed;   /* Light text */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #212324;
-    --foreground: #ededed;
-  }
-}
+/* Removed prefers-color-scheme media query entirely */
 
 body {
   background: var(--background);
@@ -44,4 +36,3 @@ body {
   animation-name: wave;
   animation-duration: 7s;
 }
-

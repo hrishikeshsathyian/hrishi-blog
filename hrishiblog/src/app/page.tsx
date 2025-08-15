@@ -28,8 +28,8 @@ export default function Home() {
       const scrollY = window.scrollY || window.pageYOffset;
       const scrollX = window.scrollX || window.pageXOffset;
 
-      setTargetTop(rect.top + scrollY - 50);   // Fine-tune as needed
-      setTargetLeft(rect.left + scrollX + 120);      // No extra offset
+      setTargetTop(rect.top + scrollY - 50);  
+      setTargetLeft(rect.left + scrollX + 120);      
     }
   }, [stage]);
 
@@ -121,17 +121,16 @@ export default function Home() {
               
               {/* Personal Introduction */}
               <div className="px-5 lg:col-span-7 mt-10 lg:mt-0 text-center lg:text-left ">
-                {/* Leave this space for the animated h1 to "land" visually */}
                 <div ref={introRef}>
                 <div className="h-12" />
                 <p className="text-md text-gray-300 text-justify">
-                  I&apos;m a Third Year Computer Science undergraduate at the National University of Singapore. I mostly build full-stack applications, passionate about projects that make the world a better place. 
-                  Recently, I&apos;ve developed a strong interest in Computer Vision, and I&apos;m excited about the things I could build with it. If I&apos;m not coding, you would probably find me playing TFT :D
-                  <br />
-                  <br />
-                  I am acively looking for opportunities to challenge myself and grow! If you think I&apos;d be a good fit for your team or project, feel free to reach out! I&apos;d love to connect and chat :3
+                  i&apos;m a third year computer science undergraduate at the national university of singapore. i mostly build full-stack applications, passionate about projects that make the world a better place.
 
-
+                  
+                  ive recently been venturing into web3, and i cant wait to explore all the cool things that i could build in that space.
+                  <br />
+               
+                  i’m actively exploring internships in software engineering, full-stack development, or blockchain development. if you think i&apos;d be a good fit for your team or project, feel free to reach out! I&apos;d love to connect and chat :)
                 </p>
                 <div className="space-x-3 mt-5">
                   <a href="mailto:hrishikeshsathyian2002@gmail.com" target="_blank"> 
@@ -153,7 +152,7 @@ export default function Home() {
           </div>
           <div className="mx-auto max-w-7xl border-l border-r border-dashed border-gray-700">
             <div className="pb-2 justify-center text-center">
-              <h1 className="text-3xl font-bold text-white mt-4">featured projects</h1>
+              <h1 className="text-3xl font-bold text-white pt-4">featured projects</h1>
               <p className="text-sm text-grey-200">some things i have been working on</p>
             </div>
             <div className="flex flex-row gap-4 pb-4 px-2">
@@ -185,7 +184,7 @@ export default function Home() {
           </div>
           <div className="mx-auto max-w-7xl border-l border-r border-dashed border-gray-700">
             <div className="pb-2 justify-center text-center">
-              <h1 className="text-3xl font-bold text-white mt-4">blogs</h1>
+              <h1 className="text-3xl font-bold text-white pt-4">blogs</h1>
               <p className="text-sm text-grey-200">trying to write my thoughts down on topics i care about!</p>
             </div>
             <div className="flex flex-row gap-4 pb-4 px-2">
